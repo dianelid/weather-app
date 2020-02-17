@@ -1,0 +1,20 @@
+.main-menu{
+	height: 9%;
+	background-color: #0080cd;
+	margin: 2% 0% 2% 0%;
+	color: #fff;
+}
+
+.menu-item{
+	font-size: 35px;
+	padding: 1% 8% 1% 8%;
+	text-align: center;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.focus-menu{
+	border: 5px;
+	background-color: #2b496a;
+	
+}

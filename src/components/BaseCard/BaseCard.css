@@ -1,0 +1,54 @@
+.base-card{
+	margin: auto;
+	margin-top: 9%;
+	width: 50%;
+	height: 40%;
+	padding: 2%;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 2px 2px 0 0 #868789;
+	color: #707070;
+}
+
+.title-base-card{
+	height: 25%;
+	font-size: 25px;
+}
+
+.locale{
+	color: #0080cd;
+	font-size: 35px;
+}
+
+.predictions{
+    float: left;
+    font-size: 25px;
+    padding: 1%;
+    text-align: center;
+    width: 25%;
+	height: 25%;
+}
+
+.temperature-box{
+	width: 100%;
+	height: 50%;
+	padding: 2%;
+}
+
+.moment-icon{
+	height: 100%;
+	padding: 0 15% 0 15%;
+}
+
+.moment-temperature{
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 30px;
+}
+
+.temperature{
+	font-size: 60px;
+}

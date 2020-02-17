@@ -1,0 +1,26 @@
+.app{
+	position:relative;
+	width: 1920px; 
+	height: 1080px;
+	background-color: #dedede;
+	font-weight: bold;
+}
+
+.title{
+	color: #0080cd;
+	font-size: 70px;
+	padding: 2% 2% 2% 5%;
+}
+
+.subtitle{
+	color: #fff;
+	font-size: 30px;
+	background-color: #0080cd;
+	border-radius: 10px;
+	padding: 1%;
+	margin-left: 2%;
+}
+
+.deactivate{
+	display: none;
+}
