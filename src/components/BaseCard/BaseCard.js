@@ -48,7 +48,7 @@ class BaseCard extends Component {
 			<div className="locale">Natal, RN</div>
 		</div>
 		<div className="temperature-box">
-			<img className="moment-icon" src={"/realistic/250px/"+data.icon+".jpg"} alt=""/>
+			<img className="moment-icon" src={"./realistic/250px/"+data.icon+".jpg"} alt=""/>
 			<div className="moment-temperature">
 				<div className="temperature">{data.temperature}º</div>
 				<div>{data.condition}</div>

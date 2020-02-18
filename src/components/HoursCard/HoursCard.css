@@ -1,0 +1,32 @@
+.hours-card{
+	margin: auto;
+	margin-top: 6%;
+	width: 95%;
+	height: 55%;
+	padding: 1%;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 2px 2px 0 0 #868789;
+	color: #707070;
+}
+
+.hour-card{
+	height: 25%;
+	width: 12%;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 0.5%;
+	margin-top: 2%;
+	font-size: 25px;
+	text-align: center;
+	background-color: #eaf0f7;
+    border: 5px solid;
+    border-color: #2d87be;
+    border-radius: 10px;
+}
+
+.title-hour-card{
+	font-size: 30px;
+    color: #f8f9fa;
+    background-color: #2d87be;
+}

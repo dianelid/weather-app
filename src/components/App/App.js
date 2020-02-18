@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './App.css'
 import Menu from '../Menu/Menu'
 import BaseCard from '../BaseCard/BaseCard'
+import HoursCard from '../HoursCard/HoursCard'
+import DaysCard from '../DaysCard/DaysCard'
 import RegionCard from '../RegionCard/RegionCard'
 
 class App extends Component {
@@ -64,9 +66,9 @@ class App extends Component {
 		if (this.state.focusedMenuItem === 0) {
 			this.focusScene('base-card');
 		} else if (this.state.focusedMenuItem === 1) {
-			this.focusScene('region-card');
+			this.focusScene('hours-card');
 		} else if (this.state.focusedMenuItem === 2) {
-			this.focusScene('base-card');
+			this.focusScene('days-card');
 		} else if (this.state.focusedMenuItem === 3) {
 			this.focusScene('region-card');
 		}
@@ -88,6 +90,8 @@ class App extends Component {
 		</div>
 		<Menu />
 		<BaseCard />
+		<HoursCard />
+		<DaysCard />
 		<RegionCard />
 	  </div>
 	)
