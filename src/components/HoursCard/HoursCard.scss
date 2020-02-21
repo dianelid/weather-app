@@ -1,3 +1,5 @@
+@import '../../media.scss';
+
 .hours-card{
 	margin: auto;
 	margin-top: 6%;
@@ -17,16 +19,24 @@
 	vertical-align: top;
 	margin-right: 0.5%;
 	margin-top: 2%;
-	font-size: 25px;
 	text-align: center;
 	background-color: #eaf0f7;
     border: 5px solid;
     border-color: #2d87be;
     border-radius: 10px;
+	font-size: 24px;
+	
+	@include HD {
+       font-size: 16px;
+    }
 }
 
 .title-hour-card{
 	font-size: 30px;
     color: #f8f9fa;
     background-color: #2d87be;
+	
+	@include HD {
+       font-size: 20px;
+    }
 }

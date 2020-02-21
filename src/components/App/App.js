@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import './App.scss'
 import Menu from '../Menu/Menu'
 import BaseCard from '../BaseCard/BaseCard'
 import HoursCard from '../HoursCard/HoursCard'
@@ -13,72 +13,70 @@ class App extends Component {
 	}
 	
 	componentDidMount() {
-		document.addEventListener('keydown', this.handleKeyPress);
+		document.addEventListener('keydown', this.handleKeyPress, true);
 	}
 	
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.handleKeyPress);
 	}
-	
-	handleKeyPress = (event) => {    
-	  if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-		event.preventDefault();
-		
-		const menuItens = document.getElementsByClassName('menu-item');
-		
-		for (let i = 0; i < menuItens.length; i++) {
-			if (menuItens[i].className === 'menu-item focus-menu') {
-				menuItens[i].className = 'menu-item';
-				this.focusItem(event.key, menuItens, i);
-				break;
-			}
-		}
-	  } else if (event.key === 'Enter') {
-		  this.enterMenu();
+
+	handleKeyPress = (event) => {  
+	  if (event.keyCode === 39 || event.keyCode === 37) {
+			event.preventDefault();
+			this.menuLeftRight(event.keyCode);
+	  } else if (event.keyCode === 13) {
+			this.enterMenu();
 	  }
 	}
 	
-	focusItem = (key, menuItens, index) => {
-		if (key === 'ArrowRight') {
-			if (index+1 === menuItens.length) {
-				index = 0;
-			} else {
-				index++;
-			}
-		} else {
-			if (index-1 === -1) {
-				index = menuItens.length-1;
-			} else {
-				index--;
-			}
-		}
+	menuLeftRight = (key) => {
+		const classNameItem = 'menu-item';
+		const classNameItemFocus = classNameItem + ' focus-menu'
+		const menuItens = document.getElementsByClassName(classNameItem);
 		
-		menuItens[index].className = 'menu-item focus-menu';
+		menuItens[this.state.focusedMenuItem].className = classNameItem;
+		this.updateIndexItemFocus(key, menuItens, this.state.focusedMenuItem);
+		menuItens[this.state.focusedMenuItem].className = classNameItemFocus;
+	}
+	
+	updateIndexItemFocus = (key, menuItens, index) => {
+		const indexNewFocus = (key === 39 ? this.focusRightItem(menuItens.length, index) : this.focusLeftItem(menuItens.length, index))
 		
 		this.setState({
-		  focusedMenuItem: index,
+		  focusedMenuItem: indexNewFocus,
 		})
+	}
+	
+	focusRightItem = (menuItensLength, index) => {
+		return index+1 === menuItensLength ? 0 : index+1
+	}
+	
+	focusLeftItem = (menuItensLength, index) => {
+		return index-1 === -1 ? menuItensLength-1 : index-1
 	}
 	
 	enterMenu = () => {
-		document.getElementById(this.state.focusedScene).className = 'deactivate';
+		this.focus_unFocus(this.state.focusedScene, false);
 		  
 		if (this.state.focusedMenuItem === 0) {
-			this.focusScene('base-card');
+			this.focus_unFocus('base-card', true);
 		} else if (this.state.focusedMenuItem === 1) {
-			this.focusScene('hours-card');
+			this.focus_unFocus('hours-card', true);
 		} else if (this.state.focusedMenuItem === 2) {
-			this.focusScene('days-card');
+			this.focus_unFocus('days-card', true);
 		} else if (this.state.focusedMenuItem === 3) {
-			this.focusScene('region-card');
+			this.focus_unFocus('region-card', true);
 		}
 	}
 	
-	focusScene = (scene) => {
-		document.getElementById(scene).className = scene;
-		this.setState({
-		  focusedScene: scene,
-		})
+	focus_unFocus = (scene, focusCmd) => {
+		document.getElementById(scene).className = (focusCmd === true ? scene : 'deactivate')
+		
+		if (focusCmd) {
+			this.setState({
+			  focusedScene: scene,
+			})
+		}
 	}
 	
   render() {

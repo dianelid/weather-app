@@ -1,3 +1,5 @@
+@import '../../media.scss';
+
 .days-card{
 	margin: auto;
 	margin-top: 6%;
@@ -16,12 +18,15 @@
 	display: inline-block;
 	vertical-align: top;
 	margin: 0.8% 0.25% 0 0.3%;
-	font-size: 25px;
+	font-size: 32px;
 	text-align: center;
-	padding-top: 2%;
 	border: 5px solid;
 	border-color: #6281a2;
 	border-radius: 10px;
+	
+	@include HD {
+       font-size: 21px;
+    }
 }
 
 .day-icon{
@@ -29,6 +34,9 @@
 }
 
 .title-day-card{
-	font-size: 30px;
-    margin-bottom: 5%;
+	font-size: 38px;
+	
+	@include HD {
+       font-size: 25px;
+    }
 }

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import './DaysCard.css'
+import './DaysCard.scss'
 
 const DayCards = props => {
 	const result = props.dataState.map((item, index) => {
 	  return <div key={index} className="day-card">
 				<div className="title-day-card">{item.date}</div>
 				<img className="day-icon" src={"./realistic/250px/"+item.icon+".jpg"} alt=""/>
-				<div>{item.condition}</div>
-				<div>Min {item.min}º</div>
-				<div>Max {item.max}º</div>
+				<div>{item.condition}
+					<div>Min {item.min}&deg;</div>
+					<div>Max {item.max}&deg;</div>
+				</div>
 			</div>
     })
   

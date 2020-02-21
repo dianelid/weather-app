@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './BaseCard.css'
+import './BaseCard.scss'
 
 class BaseCard extends Component {
 	state = {
@@ -50,13 +50,13 @@ class BaseCard extends Component {
 		<div className="temperature-box">
 			<img className="moment-icon" src={"./realistic/250px/"+data.icon+".jpg"} alt=""/>
 			<div className="moment-temperature">
-				<div className="temperature">{data.temperature}º</div>
+				<div className="temperature">{data.temperature}&deg;</div>
 				<div>{data.condition}</div>
 			</div>
 		</div>
 		<span className="predictions">
 			Sensação
-			<div>{data.sensation}º</div>
+			<div>{data.sensation}&deg;</div>
 		</span>
 		<span className="predictions">
 			Umidade

@@ -1,24 +1,40 @@
+@import '../../media.scss';
+
 .app{
 	position:relative;
 	width: 1920px; 
 	height: 1080px;
 	background-color: #dedede;
 	font-weight: bold;
+	font-family: Arial;
+	
+	@include HD {
+		width: 1280px;
+		height: 720px;
+    }
 }
 
 .title{
 	color: #0080cd;
-	font-size: 70px;
-	padding: 2% 2% 2% 5%;
+	font-size: 95px;
+	padding: 1% 2% 1% 5%;
+	
+	@include HD {
+       font-size: 63px;
+    }
 }
 
 .subtitle{
 	color: #fff;
-	font-size: 30px;
+	font-size: 35px;
 	background-color: #0080cd;
 	border-radius: 10px;
 	padding: 1%;
 	margin-left: 2%;
+	
+	@include HD {
+       font-size: 23px;
+    }
 }
 
 .deactivate{

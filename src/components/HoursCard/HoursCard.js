@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import './HoursCard.css'
+import './HoursCard.scss'
 
 const HourCards = props => {
 	const result = props.dataState.map((item, index) => {
 	  return <div key={index} className="hour-card">
 				<div className="title-hour-card">{item.date.slice(item.date.indexOf(" ")+1 , item.date.lastIndexOf(":"))}</div>
-				<div>Temperatura {item.temperature}º</div>
+				<div>Temperatura {item.temperature}&deg;</div>
 				<div>Vento {item.temperature} km/h</div>
 			</div>
     })
   
-	return (
-		result
-	)
+	return result
 }
 
 class HoursCard extends Component {
@@ -54,7 +52,7 @@ class HoursCard extends Component {
     return (
       <div id="hours-card" className="hours-card deactivate">
 		<HourCards dataState={data}/>
-	   </div>
+	  </div>
     )
   }
 }

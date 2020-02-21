@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './RegionCard.css'
+import './RegionCard.scss'
 
 class RegionCard extends Component {
 	state = {
