@@ -21,7 +21,7 @@ class HoursCard extends Component {
 		}],	
 	}
 
-  componentDidMount() {
+  componentWillMount() {
 	const proxy_url = 'https://cors-anywhere.herokuapp.com/';
     const url = 'http://apiadvisor.climatempo.com.br/api/v1/forecast/locale/5864/hours/72?token=c4914ccec5c2da1a8b08fd980bac3b68';
 	

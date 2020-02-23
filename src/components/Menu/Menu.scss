@@ -1,9 +1,12 @@
 @import '../../media.scss';
 
+.container-menus{
+	margin: 2% 0% 2% 0%;
+}
+
 .main-menu{
 	height: 9%;
 	background-color: #0080cd;
-	margin: 2% 0% 2% 0%;
 	color: #fff;
 }
 
@@ -12,9 +15,7 @@
     width: 25%;
 	font-size: 40px;
 	padding: 1% 0% 1% 0%;
-	text-align: center;
-	display: inline-block;
-	vertical-align: top;
+	@include inline-block;
 	
 	@include HD {
        font-size: 27px;
@@ -23,4 +24,30 @@
 
 .focus-menu{
 	background-color: #2b496a;
+}
+
+.sub-menu{
+	height: 80px;
+	background: #e5bb3c;
+	color: #fff;
+	
+	@include HD {
+       height: 53px;
+    }
+}
+
+.submenu-item{
+	height: 100%;
+    width: 20%;
+	font-size: 35px;
+	padding: 0.5% 0% 0.5% 0%;
+	@include inline-block;
+	
+	@include HD {
+       font-size: 27px;
+    }
+}
+
+.focus-submenu{
+	background-color: #a78008;
 }

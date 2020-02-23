@@ -1,19 +1,9 @@
 @import '../../media.scss';
 
 .base-card{
-	margin: auto;
-	/*margin-top: 9%;
-	width: 50%;
-	height: 40%;*/
-	padding: 2%;
-	background-color: #fff;
-	border-radius: 10px;
-	box-shadow: 2px 2px 0 0 #868789;
-	color: #707070;
-	
-	margin-top: 6%;
 	width: 80%;
-	height: 55%;
+	padding: 2%;
+	@include conf-card;
 }
 
 .title-base-card{
@@ -61,10 +51,8 @@
 .moment-temperature{
 	width: 50%;
 	height: 100%;
-	text-align: center;
-	display: inline-block;
-	vertical-align: top;
 	font-size: 50px;
+	@include inline-block;
 	
 	@include HD {
        font-size: 33px;

@@ -10,6 +10,8 @@ class App extends Component {
 	state = {
 		focusedScene: 'base-card',
 		focusedMenuItem: 0,
+		focusedMenu: true,
+		region: 'sul'
 	}
 	
 	componentDidMount() {
@@ -20,27 +22,44 @@ class App extends Component {
 		document.removeEventListener('keydown', this.handleKeyPress);
 	}
 
-	handleKeyPress = (event) => {  
+	handleKeyPress = (event) => {
 	  if (event.keyCode === 39 || event.keyCode === 37) {
 			event.preventDefault();
-			this.menuLeftRight(event.keyCode);
+			this.moveFocusMenu(event.keyCode);
+	  } else if (event.keyCode === 38) {
+			event.preventDefault();
+			this.returnFocusToMenu();
 	  } else if (event.keyCode === 13) {
+		  if (this.state.focusedMenu)
 			this.enterMenu();
+		  else
+			this.enterSubMenu();
 	  }
 	}
 	
-	menuLeftRight = (key) => {
-		const classNameItem = 'menu-item';
-		const classNameItemFocus = classNameItem + ' focus-menu'
-		const menuItens = document.getElementsByClassName(classNameItem);
+	moveFocusMenu = (key) => {
+		const itens = this.unFocusMenuItem();
 		
-		menuItens[this.state.focusedMenuItem].className = classNameItem;
-		this.updateIndexItemFocus(key, menuItens, this.state.focusedMenuItem);
-		menuItens[this.state.focusedMenuItem].className = classNameItemFocus;
+		this.updateIndexItemFocus(key, itens, this.state.focusedMenuItem);
+		itens[this.state.focusedMenuItem].className = this.returnClassNameItem() + ' ' + this.returnClassNameItemFocus();
 	}
 	
-	updateIndexItemFocus = (key, menuItens, index) => {
-		const indexNewFocus = (key === 39 ? this.focusRightItem(menuItens.length, index) : this.focusLeftItem(menuItens.length, index))
+	returnClassNameItem = () => {
+		return this.state.focusedMenu ? 'menu-item' : 'submenu-item';
+	}
+	returnClassNameItemFocus = () => {
+		return this.state.focusedMenu ? 'focus-menu' : 'focus-submenu';
+	}
+	
+	unFocusMenuItem = () => {
+		const itens = document.getElementsByClassName(this.returnClassNameItem());
+		
+		itens[this.state.focusedMenuItem].className = this.returnClassNameItem();
+		return itens;
+	}
+	
+	updateIndexItemFocus = (key, itens, index) => {
+		const indexNewFocus = (key === 39 ? this.focusRightItem(itens.length, index) : this.focusLeftItem(itens.length, index))
 		
 		this.setState({
 		  focusedMenuItem: indexNewFocus,
@@ -56,30 +75,82 @@ class App extends Component {
 	}
 	
 	enterMenu = () => {
-		this.focus_unFocus(this.state.focusedScene, false);
+		document.getElementById(this.state.focusedScene).className = 'deactivate';
 		  
 		if (this.state.focusedMenuItem === 0) {
-			this.focus_unFocus('base-card', true);
+			this.focusNewScene('base-card');
 		} else if (this.state.focusedMenuItem === 1) {
-			this.focus_unFocus('hours-card', true);
+			this.focusNewScene('hours-card');
 		} else if (this.state.focusedMenuItem === 2) {
-			this.focus_unFocus('days-card', true);
+			this.focusNewScene('days-card');
 		} else if (this.state.focusedMenuItem === 3) {
-			this.focus_unFocus('region-card', true);
+			this.focusNewScene('region-card');
+			this.enterRegionCard();
 		}
 	}
 	
-	focus_unFocus = (scene, focusCmd) => {
-		document.getElementById(scene).className = (focusCmd === true ? scene : 'deactivate')
+	focusNewScene = (scene) => {
+		document.getElementById(scene).className = scene
 		
-		if (focusCmd) {
-			this.setState({
-			  focusedScene: scene,
-			})
+		this.setState({
+		  focusedScene: scene,
+		})
+	}
+	
+	enterRegionCard = () => {
+		document.getElementById('sub-menu').className = 'sub-menu';
+		this.unFocusMenuItem();
+		
+		this.setState({
+		  focusedMenu: false,
+		})
+		this.setState({
+		  focusedMenuItem: 0,
+		})
+		
+		const itens = this.unFocusMenuItem();
+		itens[this.state.focusedMenuItem].className = this.returnClassNameItem() + ' ' + this.returnClassNameItemFocus();
+	}
+	
+	returnFocusToMenu = () => {
+		document.getElementById('sub-menu').className = 'sub-menu hidden';
+		
+		this.unFocusMenuItem();
+		
+		this.setState({
+		  focusedMenu: true,
+		})
+		this.setState({
+		  focusedMenuItem: 3,
+		})
+		
+		const itens = this.unFocusMenuItem();
+		itens[this.state.focusedMenuItem].className = this.returnClassNameItem() + ' ' + this.returnClassNameItemFocus();
+	}
+	
+	enterSubMenu = () => {
+		let reg = ''
+		
+		if (this.state.focusedMenuItem === 0) {
+			reg = 'sul'
+		} else if (this.state.focusedMenuItem === 1) {
+			reg = 'sudeste'
+		} else if (this.state.focusedMenuItem === 2) {
+			reg = 'norte'
+		} else if (this.state.focusedMenuItem === 3) {
+			reg = 'nordeste'
+		} else if (this.state.focusedMenuItem === 4) {
+			reg = 'centro-oeste'
 		}
+		
+		this.setState({
+		  region: reg,
+		})
 	}
 	
   render() {
+	const reg = this.state.region
+	
 	return (
 	  <div className="app">
 		<div className="title">
@@ -90,7 +161,7 @@ class App extends Component {
 		<BaseCard />
 		<HoursCard />
 		<DaysCard />
-		<RegionCard />
+		<RegionCard region={reg} />
 	  </div>
 	)
   }

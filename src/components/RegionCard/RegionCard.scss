@@ -1,15 +1,9 @@
 @import '../../media.scss';
 
 .region-card{
-	margin: auto;
-	margin-top: 6%;
 	width: 80%;
-	height: 55%;
 	padding: 2%;
-	background-color: #fff;
-	border-radius: 10px;
-	box-shadow: 2px 2px 0 0 #868789;
-	color: #707070;	
+	@include conf-card;
 }
 
 .region-image{
@@ -20,11 +14,12 @@
 .region-text{
 	width: 47%;
 	height: 100%;
-	text-align: justify;
-	display: inline-block;
-	vertical-align: top;
 	font-size: 33px;
 	padding-left: 3%;
+	
+	@include inline-block {
+		text-align: justify;
+	}
 	
 	@include HD {
        font-size: 22px;
